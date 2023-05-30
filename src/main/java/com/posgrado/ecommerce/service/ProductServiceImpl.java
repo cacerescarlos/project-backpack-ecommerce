@@ -7,6 +7,8 @@ import com.posgrado.ecommerce.entity.Product;
 import com.posgrado.ecommerce.exception.EntityNotFoundException;
 import com.posgrado.ecommerce.mapper.ProductMapper;
 import com.posgrado.ecommerce.repository.ProductRepository;
+
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -54,4 +56,10 @@ public class ProductServiceImpl implements ProductService {
     Page<Product> page = productRepository.findByPriceBetween(minPrice, maxPrice, pageable);
     return productMapper.fromEntity(page);
   }
+
+  @Override
+  public List<Product> getProductsByCategoryId(UUID categoryId) {
+    return productRepository.findProductsByCategoryId(categoryId);
+  }
+
 }

@@ -5,6 +5,8 @@ import com.posgrado.ecommerce.dto.ProductDto;
 import com.posgrado.ecommerce.entity.Product;
 import com.posgrado.ecommerce.service.ProductService;
 import jakarta.validation.Valid;
+
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -38,6 +40,12 @@ public class ProductController {
   public ResponseEntity<Product> getById(@PathVariable UUID id) {
     Product productFound = productService.getById(id);
     return ResponseEntity.status(HttpStatus.OK).body(productFound);
+  }
+
+  @GetMapping("/category/{categoryId}")
+  public ResponseEntity<List<Product>> getProductsByCategoryId(@PathVariable UUID categoryId) {
+    List<Product> products = productService.getProductsByCategoryId(categoryId);
+    return ResponseEntity.status(HttpStatus.OK).body(products);
   }
 
   @GetMapping("/pageable")
