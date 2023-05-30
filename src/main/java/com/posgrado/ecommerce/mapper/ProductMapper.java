@@ -20,6 +20,16 @@ public class ProductMapper {
     return product;
   }
 
+  public Product fromDtoUpdate(ProductDto dto, Product product) {
+    product.setName(dto.getName());
+    product.setDescription(dto.getDescription());
+    product.setPrice(dto.getPrice());
+    product.setStock(dto.getStock());
+    product.setImageUrl(dto.getImageUrl());
+    product.setActive(dto.isActive());
+    return product;
+  }
+
   public PageDto<Product> fromEntity(Page<Product> page) {
     PageDto<Product> dto = new PageDto<>();
     dto.setContent(page.getContent());

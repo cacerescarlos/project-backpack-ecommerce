@@ -11,6 +11,8 @@ public interface ProductService {
 
   Product create(ProductDto dto);
 
+  Product update(UUID id, ProductDto dto);
+
   Product getById(UUID id);
 
   Page<Product> getProducts(Pageable pageable);

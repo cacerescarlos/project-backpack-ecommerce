@@ -19,13 +19,21 @@ public class ProductServiceImpl implements ProductService {
 
   private ProductRepository productRepository;
   private CategoryService categoryService;
-
   private ProductMapper productMapper;
 
   @Override
   public Product create(ProductDto dto) {
     Category category = categoryService.getById(dto.getCategoryId());
     Product product = productMapper.fromDto(dto);
+    product.setCategory(category);
+    return productRepository.save(product);
+  }
+
+  @Override
+  public Product update(UUID id, ProductDto dto) {
+    Product product = this.getById(id);
+    Category category = categoryService.getById(dto.getCategoryId());
+    product = productMapper.fromDtoUpdate(dto, product);
     product.setCategory(category);
     return productRepository.save(product);
   }
