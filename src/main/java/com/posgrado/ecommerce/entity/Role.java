@@ -1,9 +1,7 @@
 package com.posgrado.ecommerce.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.sql.Types;
 import java.util.UUID;
 import lombok.Getter;
@@ -22,7 +20,9 @@ public class Role {
   @GeneratedValue
   @JdbcTypeCode(Types.VARCHAR)
   private UUID id;
+
   private String name;
+
   private String description;
 
 }
