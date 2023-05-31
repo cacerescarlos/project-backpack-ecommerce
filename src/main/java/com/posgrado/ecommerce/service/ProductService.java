@@ -23,4 +23,6 @@ public interface ProductService {
 
   List<Product> getProductsByCategoryId(UUID categoryId);
 
+  PageDto<Product> getProductsByCategoryIdPagination(UUID categoryId, Pageable pageable);
+
 }

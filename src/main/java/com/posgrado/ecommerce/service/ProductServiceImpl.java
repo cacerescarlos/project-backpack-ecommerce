@@ -62,4 +62,10 @@ public class ProductServiceImpl implements ProductService {
     return productRepository.findProductsByCategoryId(categoryId);
   }
 
+  @Override
+  public PageDto<Product> getProductsByCategoryIdPagination(UUID categoryId, Pageable pageable) {
+    Page<Product> page = productRepository.findProductsByCategoryIdPagination(categoryId, pageable);
+    return productMapper.fromEntity(page);
+  }
+
 }

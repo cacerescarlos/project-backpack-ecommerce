@@ -48,6 +48,17 @@ public class ProductController {
     return ResponseEntity.status(HttpStatus.OK).body(products);
   }
 
+  @GetMapping("/category/{categoryId}/pageable")
+  public ResponseEntity<PageDto<Product>> getProductsByCategoryIdPagination(
+          @PathVariable UUID categoryId,
+          @RequestParam(defaultValue = "0") int page,
+          @RequestParam(defaultValue = "20") int size
+  ){
+    Pageable pageable = PageRequest.of(page, size);
+    PageDto<Product> productPage = productService.getProductsByCategoryIdPagination(categoryId, pageable);
+    return ResponseEntity.status(HttpStatus.OK).body(productPage);
+  }
+
   @GetMapping("/pageable")
   public ResponseEntity<Page<Product>> getProducts(@RequestParam int page, @RequestParam int size) {
     Pageable pageable = PageRequest.of(page, size);
